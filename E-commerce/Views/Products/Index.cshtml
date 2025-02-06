@@ -1,0 +1,50 @@
+﻿@model List<Product>
+@{
+}
+
+<h2 class="text-center mb-3">List of Products</h2>
+
+<div class="row mb-3">
+	<div class="col">
+		<a class="btn btn-primary" asp-controller="Products" asp-action="Create">New Product</a>
+	</div>
+
+	<div class="col">
+
+	</div>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Brand</th>
+			<th>Category</th>
+			<th>Price</th>
+			<th>Image</th>
+			<th>Created At</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		@foreach (var product in Model)
+		{
+			<tr>
+				<th>@product.Id</th>
+				<th>@product.Name</th>
+				<th>@product.Brand</th>
+				<th>@product.Category</th>
+				<th>@(product.Price)₹</th>
+				<th><img src="/products/@product.ImageFile" width="100" /></th>
+				<th>@product.CreatedAt.ToString("dd/MM/yyyy")</th>
+				<th>
+					<a class="btn btn-primary" asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
+					<a class="btn btn-danger" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+				</th>
+			</tr>
+		}
+	</tbody>
+
+</table>
