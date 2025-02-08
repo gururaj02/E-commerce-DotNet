@@ -145,5 +145,21 @@ namespace E_commerce.Controllers
 
             return RedirectToAction("Index", "Products");
         }
+
+        public IActionResult Delete(int id)
+        {
+            var product = context.Products.Find(id);
+            if (product == null) {
+                return RedirectToAction("Index", "Products");
+            }
+
+            string imageFullPath = environment.WebRootPath + "/products" + product.ImageFile;
+            System.IO.File.Delete(imageFullPath);
+
+            context.Products.Remove(product);
+            context.SaveChanges(true);
+
+            return RedirectToAction("Index", "Products");
+        }
     }
 }
