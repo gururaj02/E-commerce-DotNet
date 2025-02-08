@@ -41,7 +41,7 @@
 				<th>@product.CreatedAt.ToString("dd/MM/yyyy")</th>
 				<th>
 					<a class="btn btn-primary" asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id">Edit</a>
-					<a class="btn btn-danger" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+					<a class="btn btn-danger" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" onclick="return confirm('Are you sure?')">Delete</a>
 				</th>
 			</tr>
 		}
